@@ -1,0 +1,41 @@
+  private func setupUI(){
+        playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let fontSize = GameData.hud.fontSize
+        let fontColor = GameData.hud.fontColorWhite
+        let marginH = GameData.hud.marginH
+        let marginV = GameData.hud.marginV
+        
+        backgroundColor = GameData.hud.backgroundColor
+        
+        levelLabel.fontColor = fontColor
+        levelLabel.fontSize = fontSize
+        levelLabel.position = CGPoint(x: marginH,y: playableRect.maxY - marginV)
+        levelLabel.verticalAlignmentMode = .top
+        levelLabel.horizontalAlignmentMode = .left
+        levelLabel.text = "Level: \(levelNum)"
+        addChild(levelLabel)
+        
+        scoreLabel.fontColor = fontColor
+        scoreLabel.fontSize = fontSize
+        
+        scoreLabel.verticalAlignmentMode = .top
+        scoreLabel.horizontalAlignmentMode = .left
+        // next 2 lines calculate the max width of scoreLabel
+        scoreLabel.text = "Score: 000"
+        let scoreLabelWidth = scoreLabel.frame.size.width
+        
+        // here is the starting text of scoreLabel
+        scoreLabel.text = "Score: \(levelScore)"
+        
+        scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH,y: playableRect.maxY - marginV)
+        addChild(scoreLabel)
+        
+        otherLabel.fontColor = fontColor
+        otherLabel.fontSize = fontSize
+        otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
+        otherLabel.verticalAlignmentMode = .bottom
+        otherLabel.horizontalAlignmentMode = .left
+        otherLabel.text = "Num Sprites: 0"
+        addChild(otherLabel)
+        
+    }
