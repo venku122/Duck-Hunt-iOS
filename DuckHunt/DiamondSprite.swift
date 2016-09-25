@@ -23,27 +23,6 @@ class DiamondSprite:SKSpriteNode {
       init() {
         let texture  = SKTexture(imageNamed: spriteString)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        
-        /*
-        let halfHeight = size.height/2
-        let halfWidth = size.width/2
-        let top = CGPoint(x:0, y:halfHeight)
-        let right = CGPoint(x:halfWidth, y:0)
-        let bottom = CGPoint(x:0, y:-halfHeight)
-        let left = CGPoint(x:-halfWidth, y:0)
-        
-        let pathToDraw = CGMutablePath()
-        pathToDraw.move(to: top)
-        pathToDraw.addLine(to: right)
-        pathToDraw.addLine(to: bottom)
-        pathToDraw.addLine(to: left)
-        pathToDraw.closeSubpath()
-        path = pathToDraw
-        self.strokeColor = strokeColor
-        self.lineWidth = lineWidth
-        self.fillColor = fillColor
-        
-        */
     }
     
     required init?(coder aDecoder: NSCoder) {

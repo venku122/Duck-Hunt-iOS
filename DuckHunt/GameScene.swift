@@ -13,7 +13,7 @@ class GameScene: SKScene {
     
     var levelNum:Int {
         didSet {
-            levelLabel.text = "Level: \(levelNum)"
+            timeLabel.text = "Level: \(levelNum)"
         }
     }
     var tapCount = 0 // three taps and the game is over
@@ -23,19 +23,24 @@ class GameScene: SKScene {
         }
     }
     var totalScore:Int
+    
+    
   
     let sceneManager:GameViewController
-    
     var playableRect = CGRect.zero
     var totalSprites = 0
     
-    let levelLabel = SKLabelNode(fontNamed: "Futura")
+    let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
+    let gun = ShootingRifle();
+    let reticule = TargetReticule();
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     var spritesMoving = true
+    
+    // MARK -Initalization-
     
     init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, sceneManager:GameViewController) {
         self.levelNum = levelNum
@@ -62,15 +67,7 @@ class GameScene: SKScene {
     }
     
     private func setupUI(){
-            
-            
-            /*
-             Calculate playable rect:
-             -Calculate clip on top and bottom
-             -iPhone 5,6,7, SE always are (0,0,1080,1920)
-             -iPad playable rect will be (0,240,1080,1440)
-            */
-            //playableRect = getPlayableRectPhonePortrait(size: size)
+        
             playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             let fontSize = GameData.hud.fontSize
             let fontColor = GameData.hud.fontColorWhite
@@ -78,27 +75,24 @@ class GameScene: SKScene {
             let marginV = GameData.hud.marginV
             
             backgroundColor = GameData.hud.backgroundColor
-            
-            levelLabel.fontColor = fontColor
-            levelLabel.fontSize = fontSize
-            levelLabel.position = CGPoint(x: marginH,y: playableRect.maxY - marginV)
-            levelLabel.verticalAlignmentMode = .top
-            levelLabel.horizontalAlignmentMode = .left
-            levelLabel.text = "Level: \(levelNum)"
-            addChild(levelLabel)
+        
+        // MARK: -level label -
+            timeLabel.fontColor = fontColor
+            timeLabel.fontSize = fontSize
+            timeLabel.position = CGPoint(x: marginH,y: playableRect.maxY - marginV)
+            timeLabel.verticalAlignmentMode = .top
+            timeLabel.horizontalAlignmentMode = .left
+            timeLabel.text = "Level: \(levelNum)"
+            addChild(timeLabel)
             
             scoreLabel.fontColor = fontColor
             scoreLabel.fontSize = fontSize
-            
             scoreLabel.verticalAlignmentMode = .top
             scoreLabel.horizontalAlignmentMode = .left
-            // next 2 lines calculate the max width of scoreLabel
             scoreLabel.text = "Score: 000"
             let scoreLabelWidth = scoreLabel.frame.size.width
-            
             // here is the starting text of scoreLabel
             scoreLabel.text = "Score: \(levelScore)"
-            
             scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH,y: playableRect.maxY - marginV)
             addChild(scoreLabel)
             
@@ -109,6 +103,12 @@ class GameScene: SKScene {
             otherLabel.horizontalAlignmentMode = .left
             otherLabel.text = "Num Sprites: 0"
             addChild(otherLabel)
+        
+            gun.position = CGPoint(x: playableRect.maxX / 2, y:  marginV)
+            addChild(gun)
+        
+            reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
+            addChild(reticule)
         }
 
     func makeSprites(howMany:Int) {
