@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     var gameScene: GameScene?
     var skView:SKView!
     let showDebugData = true
-    let screenSize = CGSize(width: 1080, height: 1920)
+    let screenSize = CGSize(width: 2048, height: 1536)
     let scaleMode = SKSceneScaleMode.aspectFill
     
     // MARK: -initialization-

@@ -26,8 +26,8 @@ class HomeScene: SKScene {
         backgroundColor = GameData.scene.backgroundColor
         let label = SKLabelNode(fontNamed: GameData.font.mainFont)
         let label2 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label.text = "Diamond"
-        label2.text  = "Blast"
+        label.text = "Duck Hunt"
+        label2.text  = "Talledega Knights"
         
         label.fontSize = 200
         label2.fontSize = 200
@@ -43,7 +43,7 @@ class HomeScene: SKScene {
         // label3 was an image
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap to continue"
+        label4.text = "Tap to Start"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)

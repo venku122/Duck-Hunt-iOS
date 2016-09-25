@@ -70,8 +70,8 @@ class GameScene: SKScene {
              -iPhone 5,6,7, SE always are (0,0,1080,1920)
              -iPad playable rect will be (0,240,1080,1440)
             */
-            playableRect = getPlayableRectPhonePortrait(size: size)
-            //playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            //playableRect = getPlayableRectPhonePortrait(size: size)
+            playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             let fontSize = GameData.hud.fontSize
             let fontColor = GameData.hud.fontColorWhite
             let marginH = GameData.hud.marginH
