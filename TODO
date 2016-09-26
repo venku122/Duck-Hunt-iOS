@@ -1,0 +1,18 @@
+TODO
+
+Reticule
+-Add touch recognizer
+-move to touchpoint
+Fire Buttons
+-add left/right side buttons
+-onTouch spawn bullet with moveTo of current reticule position
+Birds
+-add hit detection for bullets
+-make them move left/right
+General Gameplay
+-Remove 3 touches gameplay progression
+-refactor current gameplay screens
+-add timer instead of level count
+-add birds Killed
+
+
