@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9220B11D99C93A0062F04D /* BulletSprite.swift */; };
 		3FC4AEC61D98502600163191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEC51D98502600163191 /* AppDelegate.swift */; };
 		3FC4AEC81D98502700163191 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3FC4AEC71D98502700163191 /* GameScene.sks */; };
 		3FC4AECA1D98502700163191 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3FC4AEC91D98502700163191 /* Actions.sks */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F9220B11D99C93A0062F04D /* BulletSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSprite.swift; sourceTree = "<group>"; };
 		3FC4AEC21D98502600163191 /* DuckHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuckHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC4AEC51D98502600163191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FC4AEC71D98502700163191 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				3FC4AEF41D98526600163191 /* LevelResults.swift */,
 				3FC4AEF81D98656200163191 /* ShootingRifle.swift */,
 				3FC4AEFA1D986AEF00163191 /* targetReticule.swift */,
+				3F9220B11D99C93A0062F04D /* BulletSprite.swift */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				3FC4AEE41D9851B700163191 /* CGFloat+Extensions.swift in Sources */,
 				3FC4AEEA1D9851DE00163191 /* GameOverScene.swift in Sources */,
 				3FC4AEEB1D9851DE00163191 /* GameScene.swift in Sources */,
+				3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */,
 				3FC4AEF71D9852AC00163191 /* DiamondSprite.swift in Sources */,
 				3FC4AEF91D98656200163191 /* ShootingRifle.swift in Sources */,
 				3FC4AEFB1D986AEF00163191 /* targetReticule.swift in Sources */,

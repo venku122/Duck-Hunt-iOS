@@ -33,8 +33,8 @@ class GameScene: SKScene {
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
-    let gun = ShootingRifle();
-    let reticule = TargetReticule();
+    let gun = ShootingRifle()
+    let reticule = TargetReticule()
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
@@ -168,8 +168,23 @@ class GameScene: SKScene {
             ])
         run(unpauseAction)
     }
+    
+    func createBullet(pos:CGPoint){
+        let bullet = BulletSprite()
+        print("made a bullet")
+        bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
+        bullet.moveTo(pos: pos)
+        addChild(bullet)
+        
+    }
+    
     // MARK: -Events-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: self)
+        createBullet(pos: location)
         
         /*if levelNum < GameData.maxLevel {
             self.totalScore += self.levelScore

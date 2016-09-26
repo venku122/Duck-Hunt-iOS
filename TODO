@@ -1,11 +1,9 @@
 TODO
 
 Reticule
--Add touch recognizer
--move to touchpoint
 Fire Buttons
 -add left/right side buttons
--onTouch spawn bullet with moveTo of current reticule position
+-onTouch spawn bullet with moveTo (and move off screen unless a collision occurs) of current reticule position 
 Birds
 -add hit detection for bullets
 -make them move left/right
