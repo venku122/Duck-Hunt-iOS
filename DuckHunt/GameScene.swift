@@ -170,12 +170,8 @@ class GameScene: SKScene {
     }
     // MARK: -Events-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        tapCount = tapCount + 1
-        if tapCount < 3 {
-            return
-        }
         
-        if levelNum < GameData.maxLevel {
+        /*if levelNum < GameData.maxLevel {
             self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadLevelFinishScene(results: results)
@@ -184,7 +180,17 @@ class GameScene: SKScene {
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadGameOverScene(results: results)
         }
+        */
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: self)
+        reticule.position = location
+    }
+    
     // MARK: - Game Loop -
     override func update(_ currentTime: TimeInterval) {
         calculateDeltaTime(currentTime: currentTime)
