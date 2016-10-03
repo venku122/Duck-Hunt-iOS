@@ -41,7 +41,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let sceneManager:GameViewController
     var playableRect = CGRect.zero
     var totalSprites = 0
-    var enemiesRemaining = 0
+    var enemiesRemaining = 0{
+        didSet{
+            otherLabel.text = "Targets Remaining: \(enemiesRemaining)"
+        }
+    }
     
     let background = SKSpriteNode(imageNamed: "background")
     let timeLabel = SKLabelNode(fontNamed: "Futura")
@@ -80,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         setupUI()
-        makeSprites(howMany: 10)
+        makeSprites(howMany: enemiesRemaining)
         unpauseSprites()
     }
     
@@ -123,7 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
             otherLabel.verticalAlignmentMode = .bottom
             otherLabel.horizontalAlignmentMode = .left
-            otherLabel.text = "Targets Remaining: 0"
+            otherLabel.text = "Targets Remaining: \(enemiesRemaining)"
             addChild(otherLabel)
         
             // MARK -Set up Fire buttons-
@@ -253,6 +257,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
         bullet.removeFromParent()
         target.removeFromParent()
+        enemiesRemaining -= 1
+        levelScore += 5
     }
     
     // MARK: -Events-
@@ -273,16 +279,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             reticule.position = location
         }
         // createBullet(pos: location)
-        /*
-         if timeRemaining < 0 {
-            //self.totalScore += self.levelScore
-            let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
-            sceneManager.loadLevelFinishScene(results: results)
-<<<<<<< HEAD
-        }else {
-=======
-        } else {
->>>>>>> 31f601fd10579ac10635372d99d73b3c2d561632
+        
+         /*else {
+
             self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadGameOverScene(results: results)
@@ -321,5 +320,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         calculateDeltaTime(currentTime: currentTime)
         moveSprites(dt:CGFloat(dt))
         timeRemaining -= CGFloat(dt)
+        
+        if enemiesRemaining <= 0  {
+            //self.totalScore += self.levelScore
+            let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
+            sceneManager.loadLevelFinishScene(results: results)
+        }
+        
+        if timeRemaining <= 0   {
+         
+         self.totalScore += self.levelScore
+         let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
+         sceneManager.loadGameOverScene(results: results)
+         }
     }
 }
