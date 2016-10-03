@@ -43,6 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var totalSprites = 0
     var enemiesRemaining = 0
     
+    let background = SKSpriteNode(imageNamed: "background")
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
@@ -138,6 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
             addChild(reticule)
+        
+            background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
+            background.zPosition = -10
+            addChild(background)
         }
 
     func makeSprites(howMany:Int) {
@@ -273,7 +278,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadLevelFinishScene(results: results)
+<<<<<<< HEAD
         }else {
+=======
+        } else {
+>>>>>>> 31f601fd10579ac10635372d99d73b3c2d561632
             self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadGameOverScene(results: results)
