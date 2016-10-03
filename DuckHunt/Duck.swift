@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class DiamondSprite:SKSpriteNode {
+class Duck:SKSpriteNode {
     // MARK -ivars-
     var fwd:CGPoint = CGPoint(x:0.0, y:1.0) // North/Up
     var velocity:CGPoint = CGPoint.zero // Speed with direction
@@ -23,6 +23,7 @@ class DiamondSprite:SKSpriteNode {
       init() {
         let texture  = SKTexture(imageNamed: spriteString)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

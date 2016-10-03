@@ -24,7 +24,7 @@
 		3FC4AEF21D98525900163191 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF01D98525900163191 /* GameData.swift */; };
 		3FC4AEF31D98525900163191 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF11D98525900163191 /* MyUtils.swift */; };
 		3FC4AEF51D98526600163191 /* LevelResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF41D98526600163191 /* LevelResults.swift */; };
-		3FC4AEF71D9852AC00163191 /* DiamondSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF61D9852AC00163191 /* DiamondSprite.swift */; };
+		3FC4AEF71D9852AC00163191 /* Duck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF61D9852AC00163191 /* Duck.swift */; };
 		3FC4AEF91D98656200163191 /* ShootingRifle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF81D98656200163191 /* ShootingRifle.swift */; };
 		3FC4AEFB1D986AEF00163191 /* targetReticule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEFA1D986AEF00163191 /* targetReticule.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +49,7 @@
 		3FC4AEF01D98525900163191 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = SOURCE_ROOT; };
 		3FC4AEF11D98525900163191 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = SOURCE_ROOT; };
 		3FC4AEF41D98526600163191 /* LevelResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelResults.swift; sourceTree = SOURCE_ROOT; };
-		3FC4AEF61D9852AC00163191 /* DiamondSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondSprite.swift; sourceTree = SOURCE_ROOT; };
+		3FC4AEF61D9852AC00163191 /* Duck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duck.swift; sourceTree = SOURCE_ROOT; };
 		3FC4AEF81D98656200163191 /* ShootingRifle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShootingRifle.swift; sourceTree = "<group>"; };
 		3FC4AEFA1D986AEF00163191 /* targetReticule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = targetReticule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +121,7 @@
 		3FC4AEDF1D9850EF00163191 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
-				3FC4AEF61D9852AC00163191 /* DiamondSprite.swift */,
+				3FC4AEF61D9852AC00163191 /* Duck.swift */,
 				3FC4AEF41D98526600163191 /* LevelResults.swift */,
 				3FC4AEF81D98656200163191 /* ShootingRifle.swift */,
 				3FC4AEFA1D986AEF00163191 /* targetReticule.swift */,
@@ -234,7 +234,7 @@
 				3FC4AEEA1D9851DE00163191 /* GameOverScene.swift in Sources */,
 				3FC4AEEB1D9851DE00163191 /* GameScene.swift in Sources */,
 				3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */,
-				3FC4AEF71D9852AC00163191 /* DiamondSprite.swift in Sources */,
+				3FC4AEF71D9852AC00163191 /* Duck.swift in Sources */,
 				3FC4AEF91D98656200163191 /* ShootingRifle.swift in Sources */,
 				3FC4AEFB1D986AEF00163191 /* targetReticule.swift in Sources */,
 				3FC4AEF21D98525900163191 /* GameData.swift in Sources */,

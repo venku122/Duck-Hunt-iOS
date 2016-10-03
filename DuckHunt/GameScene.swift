@@ -124,12 +124,12 @@ class GameScene: SKScene {
     func makeSprites(howMany:Int) {
         totalSprites = totalSprites + howMany
         otherLabel.text = "Num Sprites: \(totalSprites)"
-        var s:DiamondSprite
+        var s:Duck
         for _ in 0...howMany-1 {
-            s = DiamondSprite()
+            s = Duck()
             s.name = "diamond"
             s.position = randomCGPointInRect(playableRect, margin: 300)
-            s.fwd = CGPoint.randomUnitVector()
+            s.fwd = CGPoint(x: -1.0, y: 0)
             addChild(s)
         }
     }
@@ -147,7 +147,7 @@ class GameScene: SKScene {
         if spritesMoving {
             enumerateChildNodes(withName: "diamond", using: {
                 node, stop in
-                let s = node as! DiamondSprite
+                let s = node as! Duck
                 let halfWidth = s.frame.width/2
                 let halfHeight = s.frame.height/2
                 
@@ -225,6 +225,10 @@ class GameScene: SKScene {
             if name == "fireButton" {
                 createBullet()
             }
+        }
+        
+        if location.y < fireLabelLeft.position.y {
+            reticule.position = location
         }
         // createBullet(pos: location)
         
