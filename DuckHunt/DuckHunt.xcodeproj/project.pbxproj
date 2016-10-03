@@ -181,7 +181,7 @@
 				TargetAttributes = {
 					3FC4AEC11D98502600163191 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = JB4EH8CH58;
+						DevelopmentTeam = 5W68HNMG32;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -361,10 +361,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JB4EH8CH58;
+				DEVELOPMENT_TEAM = 5W68HNMG32;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -374,10 +374,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JB4EH8CH58;
+				DEVELOPMENT_TEAM = 5W68HNMG32;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

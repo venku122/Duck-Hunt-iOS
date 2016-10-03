@@ -9,7 +9,14 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+struct PhysicsCategory {
+    static let None      : UInt32 = 0
+    static let All       : UInt32 = UInt32.max
+    static let Target    : UInt32 = 0b1       // 1
+    static let Projectile: UInt32 = 0b10      // 2
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var levelNum:Int {
         didSet {
@@ -58,6 +65,10 @@ class GameScene: SKScene {
         self.enemiesRemaining = numEnemies
         super.init(size: size)
         self.scaleMode = scaleMode
+        
+        // physics
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.contactDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -136,9 +147,14 @@ class GameScene: SKScene {
         var s:Duck
         for _ in 0...howMany-1 {
             s = Duck()
+            s.physicsBody = SKPhysicsBody(rectangleOf: s.duckTexture!.size())
+            s.physicsBody?.isDynamic = true
+            s.physicsBody?.categoryBitMask = PhysicsCategory.Target
+            s.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
+            s.physicsBody?.collisionBitMask = PhysicsCategory.None // may change this later
             s.name = "diamond"
             s.position = randomCGPointInRect(playableRect, margin: 300)
-            s.fwd = CGPoint(x: -1.0, y: 0)
+            s.fwd = CGPoint(x: 1.0, y: 0)
             addChild(s)
         }
     }
@@ -194,6 +210,14 @@ class GameScene: SKScene {
         print("made a bullet")
         bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
         
+        //physics stuff
+        bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.bulletTexture!.size().width/2)
+        bullet.physicsBody?.isDynamic = true
+        bullet.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
+        bullet.physicsBody?.contactTestBitMask = PhysicsCategory.Target
+        bullet.physicsBody?.collisionBitMask = PhysicsCategory.None
+        bullet.physicsBody?.usesPreciseCollisionDetection = true
+        
         
         // Bullet calculations
         let offset = pos - bullet.position
@@ -219,7 +243,11 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([actionMove, actionMoveDone])
         
         bullet.run(sequence)
-        
+    }
+    
+    func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
+        bullet.removeFromParent()
+        target.removeFromParent()
     }
     
     // MARK: -Events-
@@ -245,7 +273,7 @@ class GameScene: SKScene {
             //self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadLevelFinishScene(results: results)
-        } /*else {
+        }else {
             self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadGameOverScene(results: results)
@@ -259,6 +287,24 @@ class GameScene: SKScene {
         }
         let location = touch.location(in: self)
         reticule.position = location
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        // 1
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+
+        if ((firstBody.categoryBitMask & PhysicsCategory.Target != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
+            collisionHappened(bullet: firstBody.node as! SKSpriteNode, target: secondBody.node as! SKSpriteNode)
+        }
     }
     
     // MARK: - Game Loop -

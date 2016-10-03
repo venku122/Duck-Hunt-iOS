@@ -16,12 +16,13 @@ class Duck:SKSpriteNode {
     var delta:CGFloat = 300.0
     var hit:Bool = false
     var spriteString:String = "duck_outline_target_white"
+    let duckTexture: SKTexture?
 
     // MARK -initalization-
     
       init() {
-        let texture  = SKTexture(imageNamed: spriteString)
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        duckTexture  = SKTexture(imageNamed: spriteString)
+        super.init(texture: duckTexture, color: UIColor.clear, size: duckTexture!.size())
     }
     
     required init?(coder aDecoder: NSCoder) {

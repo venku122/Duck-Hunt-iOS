@@ -13,11 +13,12 @@ class BulletSprite : SKSpriteNode {
     
     // MARK -IVARS-
     let bulletSprite:String = "smallBullet"
+    let bulletTexture : SKTexture?
     
     // MARK -Initialization-
     init() {
-        let texture  = SKTexture(imageNamed: bulletSprite)
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        bulletTexture = SKTexture(imageNamed: bulletSprite)
+        super.init(texture: bulletTexture, color: UIColor.clear, size: bulletTexture!.size())
     }
     
     required init?(coder aDecoder: NSCoder) {
