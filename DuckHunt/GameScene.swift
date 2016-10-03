@@ -23,12 +23,18 @@ class GameScene: SKScene {
         }
     }
     var totalScore:Int
+    var timeRemaining:CGFloat{
+        didSet{
+            timeLabel.text = "Time Remaining: \(Int(timeRemaining))"
+        }
+    }
     
     
   
     let sceneManager:GameViewController
     var playableRect = CGRect.zero
     var totalSprites = 0
+    var enemiesRemaining = 0
     
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
@@ -44,10 +50,12 @@ class GameScene: SKScene {
     
     // MARK -Initalization-
     
-    init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, sceneManager:GameViewController) {
+    init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, levelTime:CGFloat, numEnemies: Int, sceneManager:GameViewController) {
         self.levelNum = levelNum
         self.totalScore = totalScore
         self.sceneManager = sceneManager
+        self.timeRemaining = levelTime
+        self.enemiesRemaining = numEnemies
         super.init(size: size)
         self.scaleMode = scaleMode
     }
@@ -84,7 +92,7 @@ class GameScene: SKScene {
             timeLabel.position = CGPoint(x: marginH,y: playableRect.maxY - marginV)
             timeLabel.verticalAlignmentMode = .top
             timeLabel.horizontalAlignmentMode = .left
-            timeLabel.text = "Level: \(levelNum)"
+            timeLabel.text = "Time Remaining: \(Int(timeRemaining))"
             addChild(timeLabel)
             
             scoreLabel.fontColor = fontColor
@@ -103,7 +111,7 @@ class GameScene: SKScene {
             otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
             otherLabel.verticalAlignmentMode = .bottom
             otherLabel.horizontalAlignmentMode = .left
-            otherLabel.text = "Num Sprites: 0"
+            otherLabel.text = "Targets Remaining: 0"
             addChild(otherLabel)
         
             // MARK -Set up Fire buttons-
@@ -123,7 +131,8 @@ class GameScene: SKScene {
 
     func makeSprites(howMany:Int) {
         totalSprites = totalSprites + howMany
-        otherLabel.text = "Num Sprites: \(totalSprites)"
+        otherLabel.text = "Targets Remaining:\(totalSprites)"
+        otherLabel.text = "Targets Remaining: 0"
         var s:Duck
         for _ in 0...howMany-1 {
             s = Duck()
@@ -155,17 +164,17 @@ class GameScene: SKScene {
                 
                 // check left/right
                 if s.position.x <= halfWidth || s.position.x >= self.size.width - halfWidth {
-                    s.reflectX() //bouncing
+                    s.reflectX(screenWidth: self.size.width ) //bouncing
                     s.update(dt:dt) //extra move
-                    self.levelScore = self.levelScore + 1 // lame game
+                    // self.levelScore = self.levelScore + 1 // lame game
                     
                 }
                 
                 // chech top/bottom
                 if s.position.y <= self.playableRect.minY + halfHeight || s.position.y >= self.playableRect.maxY - halfHeight {
-                    s.reflectY()
+                    s.reflectY(screenHeight: self.playableRect.maxY )
                     s.update(dt: dt)
-                    self.levelScore = self.levelScore + 1
+                    // self.levelScore = self.levelScore + 1
                 }
             })
         }
@@ -227,21 +236,21 @@ class GameScene: SKScene {
             }
         }
         
-        if location.y < fireLabelLeft.position.y {
+        if location.y > fireLabelLeft.position.y + 100{
             reticule.position = location
         }
         // createBullet(pos: location)
-        
-        /*if levelNum < GameData.maxLevel {
-            self.totalScore += self.levelScore
+        /*
+         if timeRemaining < 0 {
+            //self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadLevelFinishScene(results: results)
-        } else {
+        } /*else {
             self.totalScore += self.levelScore
             let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
             sceneManager.loadGameOverScene(results: results)
-        }
-        */
+        }*/
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -256,5 +265,6 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         calculateDeltaTime(currentTime: currentTime)
         moveSprites(dt:CGFloat(dt))
+        timeRemaining -= CGFloat(dt)
     }
 }

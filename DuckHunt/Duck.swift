@@ -16,14 +16,12 @@ class Duck:SKSpriteNode {
     var delta:CGFloat = 300.0
     var hit:Bool = false
     var spriteString:String = "duck_outline_target_white"
-  
-    
+
     // MARK -initalization-
     
       init() {
         let texture  = SKTexture(imageNamed: spriteString)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,11 +35,13 @@ class Duck:SKSpriteNode {
          position = position + velocity * dt
     }
     
-    func reflectX() {
-        fwd.x *= CGFloat(-1.0)
+    func reflectX(screenWidth:CGFloat) {
+        if position.x > screenWidth {position.x = 0}
+        if position.x < 0 {position.x = screenWidth}
     }
     
-    func reflectY() {
-        fwd.y *= CGFloat(-1.0)
+    func reflectY(screenHeight:CGFloat) {
+        if position.y > screenHeight {position.y = 0}
+        if position.y < 0 {position.y = screenHeight}
     }
 }
