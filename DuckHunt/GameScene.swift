@@ -33,6 +33,8 @@ class GameScene: SKScene {
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
+    let fireLabelLeft = SKSpriteNode(color: UIColor.black, size: CGSize(width: 300 , height: 200 ))
+    let fireLabelRight = SKSpriteNode(color: UIColor.black, size: CGSize(width: 300 , height: 200 ))
     let gun = ShootingRifle()
     let reticule = TargetReticule()
     
@@ -104,6 +106,14 @@ class GameScene: SKScene {
             otherLabel.text = "Num Sprites: 0"
             addChild(otherLabel)
         
+            // MARK -Set up Fire buttons-
+            fireLabelLeft.position = CGPoint(x: fireLabelLeft.size.width / 2, y: fireLabelLeft.size.height  )
+            fireLabelLeft.name = "fireButton"
+            fireLabelRight.position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2), y: fireLabelLeft.size.height)
+            fireLabelRight.name = "fireButton"
+            addChild(fireLabelLeft)
+            addChild(fireLabelRight)
+        
             gun.position = CGPoint(x: playableRect.maxX / 2, y:  marginV)
             addChild(gun)
         
@@ -169,12 +179,37 @@ class GameScene: SKScene {
         run(unpauseAction)
     }
     
-    func createBullet(pos:CGPoint){
+    func createBullet(){
         let bullet = BulletSprite()
+        let pos = reticule.position
         print("made a bullet")
         bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
-        bullet.moveTo(pos: pos)
+        
+        
+        // Bullet calculations
+        let offset = pos - bullet.position
+        
+        //bail out if backwards 
+        if(offset.y < 0 ){return}
+        
+        // add to view
         addChild(bullet)
+        
+        //get direction of where to shoot
+        let direction = offset.normalized()
+        
+        // shoot far enough to cross screen
+        let shootAmount = direction * 2500
+        
+        // add shoot amount to position
+        let realDest = shootAmount + bullet.position
+        
+        
+        let actionMove = SKAction.move(to: realDest, duration: 2)
+        let actionMoveDone = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([actionMove, actionMoveDone])
+        
+        bullet.run(sequence)
         
     }
     
@@ -184,7 +219,14 @@ class GameScene: SKScene {
             return
         }
         let location = touch.location(in: self)
-        createBullet(pos: location)
+        let touchedNode = self.nodes(at: location)
+        
+        if let name = touchedNode.first?.name {
+            if name == "fireButton" {
+                createBullet()
+            }
+        }
+        // createBullet(pos: location)
         
         /*if levelNum < GameData.maxLevel {
             self.totalScore += self.levelScore
