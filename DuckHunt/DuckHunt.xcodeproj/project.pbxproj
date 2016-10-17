@@ -10,6 +10,8 @@
 		3F0CA60D1DB572D00049E8C5 /* gunshot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA60C1DB572D00049E8C5 /* gunshot.wav */; };
 		3F0CA60F1DB576510049E8C5 /* carnivalMusic.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA60E1DB576510049E8C5 /* carnivalMusic.aiff */; };
 		3F0CA6111DB577D80049E8C5 /* EmptyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */; };
+		3F0CA6141DB595090049E8C5 /* endLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA6121DB595090049E8C5 /* endLevel.png */; };
+		3F0CA6151DB595090049E8C5 /* firstScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA6131DB595090049E8C5 /* firstScreen.png */; };
 		3F6583761DB5887E00E283FB /* explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583741DB5887E00E283FB /* explode.sks */; };
 		3F6583771DB5887E00E283FB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583751DB5887E00E283FB /* spark.png */; };
 		3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9220B11D99C93A0062F04D /* BulletSprite.swift */; };
@@ -38,6 +40,8 @@
 		3F0CA60C1DB572D00049E8C5 /* gunshot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunshot.wav; sourceTree = "<group>"; };
 		3F0CA60E1DB576510049E8C5 /* carnivalMusic.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = carnivalMusic.aiff; sourceTree = "<group>"; };
 		3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBullet.swift; sourceTree = "<group>"; };
+		3F0CA6121DB595090049E8C5 /* endLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endLevel.png; sourceTree = "<group>"; };
+		3F0CA6131DB595090049E8C5 /* firstScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstScreen.png; sourceTree = "<group>"; };
 		3F6583741DB5887E00E283FB /* explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explode.sks; sourceTree = "<group>"; };
 		3F6583751DB5887E00E283FB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		3F9220B11D99C93A0062F04D /* BulletSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSprite.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			children = (
 				3F0CA60E1DB576510049E8C5 /* carnivalMusic.aiff */,
 				3F0CA60C1DB572D00049E8C5 /* gunshot.wav */,
+				3F0CA6121DB595090049E8C5 /* endLevel.png */,
+				3F0CA6131DB595090049E8C5 /* firstScreen.png */,
 				3FC4AEC41D98502600163191 /* DuckHunt */,
 				3FC4AEC31D98502600163191 /* Products */,
 			);
@@ -196,7 +202,7 @@
 				TargetAttributes = {
 					3FC4AEC11D98502600163191 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5W68HNMG32;
+						DevelopmentTeam = JB4EH8CH58;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -230,8 +236,10 @@
 				3FC4AED31D98502700163191 /* Assets.xcassets in Resources */,
 				3F6583761DB5887E00E283FB /* explode.sks in Resources */,
 				3F0CA60F1DB576510049E8C5 /* carnivalMusic.aiff in Resources */,
+				3F0CA6141DB595090049E8C5 /* endLevel.png in Resources */,
 				3F0CA60D1DB572D00049E8C5 /* gunshot.wav in Resources */,
 				3FC4AED61D98502700163191 /* LaunchScreen.storyboard in Resources */,
+				3F0CA6151DB595090049E8C5 /* firstScreen.png in Resources */,
 				3FC4AECA1D98502700163191 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,12 +389,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5W68HNMG32;
+				DEVELOPMENT_TEAM = JB4EH8CH58;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -394,12 +403,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5W68HNMG32;
+				DEVELOPMENT_TEAM = JB4EH8CH58;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

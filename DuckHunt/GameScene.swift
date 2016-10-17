@@ -171,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             //Ammo
         for index in 1...maxAmmo {
-            ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2) - CGFloat(index * 70), y: fireLabelLeft.size.height  )
+            ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2)  - CGFloat(100 + (index * 70)), y: fireLabelLeft.size.height  )
             addChild(ammunition[index])
         }
         

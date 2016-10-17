@@ -4,6 +4,7 @@ class LevelFinishScene: SKScene {
     let sceneManager:GameViewController
     let results:LevelResults
     let button:SKLabelNode = SKLabelNode(fontNamed: GameData.font.mainFont)
+    let background = SKSpriteNode(imageNamed: "endLevel")
     
     // MARK: - Initialization -
     init(size: CGSize, scaleMode:SKSceneScaleMode, results: LevelResults,sceneManager:GameViewController) {
@@ -18,6 +19,8 @@ class LevelFinishScene: SKScene {
     }
     
     override func didMove(to view: SKView){
+        
+        let playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         backgroundColor = GameData.scene.backgroundColor
         
         let label = SKLabelNode(fontNamed: GameData.font.mainFont)
@@ -44,6 +47,10 @@ class LevelFinishScene: SKScene {
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
         addChild(label4)
+        
+        background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
+        background.zPosition = -10
+        addChild(background)
         
         
         
