@@ -17,7 +17,10 @@ class TargetReticule : SKSpriteNode {
     // MARK -Initialization-
     init() {
         let texture  = SKTexture(imageNamed: reticuleSprite)
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        let size = texture.size()
+        let sizeX = size.width * 3
+        let sizeY = size.height * 3
+        super.init(texture: texture, color: UIColor.clear, size: CGSize(width: sizeX, height: sizeY))
     }
     
     required init?(coder aDecoder: NSCoder) {

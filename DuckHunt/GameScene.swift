@@ -60,6 +60,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dt: TimeInterval = 0
     var spritesMoving = true
     
+    var backgroundMusic = SKAudioNode(fileNamed: "carnivalMusic.aiff")
+    
     // MARK -Initalization-
     
     init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, levelTime:CGFloat, numEnemies: Int, sceneManager:GameViewController) {
@@ -147,6 +149,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
             background.zPosition = -10
             addChild(background)
+        
+            backgroundMusic.autoplayLooped = true
+            addChild(backgroundMusic)
+        
         }
 
     func makeSprites(howMany:Int) {
@@ -246,12 +252,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // add shoot amount to position
         let realDest = shootAmount + bullet.position
         
-        
+        let audioSound = SKAction.playSoundFileNamed("gunshot.wav", waitForCompletion: false)
         let actionMove = SKAction.move(to: realDest, duration: 2)
         let actionMoveDone = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([actionMove, actionMoveDone])
+        let sequence = SKAction.sequence([audioSound, actionMove, actionMoveDone])
         
         bullet.run(sequence)
+        //[SKAction playSoundFileNamed:@"gunshot.wav", waitForCompletion:NO]
     }
     
     func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
