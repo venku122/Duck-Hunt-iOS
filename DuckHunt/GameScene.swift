@@ -386,7 +386,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if timeRemaining <= 0   {
          
          self.totalScore += self.levelScore
-         let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
+         let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You lost at level \(levelNum)")
          sceneManager.loadGameOverScene(results: results)
          }
     }

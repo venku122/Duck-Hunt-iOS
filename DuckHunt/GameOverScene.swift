@@ -28,7 +28,7 @@ class GameOverScene: SKScene {
         addChild(label)
         
         let label2 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label2.text = "You beat level \(results.levelNum)!"
+        label2.text = "You lost at level \(results.levelNum)!"
         label2.fontSize = 70
         label2.position = CGPoint(x:size.width/2, y:size.height/2 + 100)
         addChild(label2)
