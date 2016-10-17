@@ -60,20 +60,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dt: TimeInterval = 0
     var spritesMoving = true
     
+    var backgroundMusic = SKAudioNode(fileNamed: "carnivalMusic.aiff")
+    
+    var ammunition = [AmmoNode]()
+    var currentAmmo:Int
+    var maxAmmo:Int
+    
     // MARK -Initalization-
     
-    init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, levelTime:CGFloat, numEnemies: Int, sceneManager:GameViewController) {
+    init(size: CGSize, scaleMode: SKSceneScaleMode, levelNum:Int, totalScore:Int, levelTime:CGFloat, numEnemies: Int, startingAmmo: Int, sceneManager:GameViewController) {
         self.levelNum = levelNum
         self.totalScore = totalScore
         self.sceneManager = sceneManager
         self.timeRemaining = levelTime
         self.enemiesRemaining = numEnemies
+        
+        //ammo
+        self.currentAmmo = startingAmmo
+        self.maxAmmo = startingAmmo
+        for _ in 0...maxAmmo {
+            ammunition.append(AmmoNode())
+        }
+        
         super.init(size: size)
         self.scaleMode = scaleMode
         
         // physics
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -144,9 +160,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
             addChild(reticule)
         
+            //background graphics
             background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
             background.zPosition = -10
             addChild(background)
+        
+            //music
+            backgroundMusic.autoplayLooped = true
+            addChild(backgroundMusic)
+        
+            //Ammo
+        for index in 1...maxAmmo {
+            ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2) - CGFloat(index * 70), y: fireLabelLeft.size.height  )
+            addChild(ammunition[index])
+        }
+        
         }
 
     func makeSprites(howMany:Int) {
@@ -214,44 +242,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBullet(){
-        let bullet = BulletSprite()
-        let pos = reticule.position
-        print("made a bullet")
-        bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
+        if currentAmmo > 0 {
+            // manage ammo
+            ammunition[currentAmmo].deplete()
+            currentAmmo -= 1
+            
+            let bullet = BulletSprite()
+            let pos = reticule.position
+            print("made a bullet")
+            bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
+            
+            //physics stuff
+            bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.bulletTexture!.size().width/2)
+            bullet.physicsBody?.isDynamic = true
+            bullet.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
+            bullet.physicsBody?.contactTestBitMask = PhysicsCategory.Target
+            bullet.physicsBody?.collisionBitMask = PhysicsCategory.None
+            bullet.physicsBody?.usesPreciseCollisionDetection = true
+            
+            
+            // Bullet calculations
+            let offset = pos - bullet.position
+            
+            //bail out if backwards
+            if(offset.y < 0 ){return}
+            
+            // add to view
+            addChild(bullet)
+            
+            //get direction of where to shoot
+            let direction = offset.normalized()
+            
+            // shoot far enough to cross screen
+            let shootAmount = direction * 2500
+            
+            // add shoot amount to position
+            let realDest = shootAmount + bullet.position
+            
+            let audioSound = SKAction.playSoundFileNamed("gunshot.wav", waitForCompletion: false)
+            let actionMove = SKAction.move(to: realDest, duration: 2)
+            let actionMoveDone = SKAction.removeFromParent()
+            let sequence = SKAction.sequence([audioSound, actionMove, actionMoveDone])
+            
+            bullet.run(sequence)
+        } else {
+            ammunition[0].deplete()
+            reloadAmmo()
+        }
         
-        //physics stuff
-        bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.bulletTexture!.size().width/2)
-        bullet.physicsBody?.isDynamic = true
-        bullet.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
-        bullet.physicsBody?.contactTestBitMask = PhysicsCategory.Target
-        bullet.physicsBody?.collisionBitMask = PhysicsCategory.None
-        bullet.physicsBody?.usesPreciseCollisionDetection = true
         
-        
-        // Bullet calculations
-        let offset = pos - bullet.position
-        
-        //bail out if backwards 
-        if(offset.y < 0 ){return}
-        
-        // add to view
-        addChild(bullet)
-        
-        //get direction of where to shoot
-        let direction = offset.normalized()
-        
-        // shoot far enough to cross screen
-        let shootAmount = direction * 2500
-        
-        // add shoot amount to position
-        let realDest = shootAmount + bullet.position
-        
-        
-        let actionMove = SKAction.move(to: realDest, duration: 2)
-        let actionMoveDone = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([actionMove, actionMoveDone])
-        
-        bullet.run(sequence)
     }
     
     func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
@@ -334,4 +373,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          sceneManager.loadGameOverScene(results: results)
          }
     }
+    
+    func reloadAmmo() {
+        let waitAction = SKAction.wait(forDuration: 3)
+        let reloadAction = SKAction.run({for index in 1...self.maxAmmo { self.ammunition[index].reload()}; self.currentAmmo = self.maxAmmo})
+        
+        self.run(SKAction.sequence([waitAction, reloadAction]))
+    }
+    
+        
 }
