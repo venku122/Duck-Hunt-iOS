@@ -51,8 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
-    let fireLabelLeft = SKSpriteNode(color: UIColor.black, size: CGSize(width: 300 , height: 200 ))
-    let fireLabelRight = SKSpriteNode(color: UIColor.black, size: CGSize(width: 300 , height: 200 ))
+    let fireLabelLeft = SKSpriteNode(imageNamed: "firebutton")
+    let fireLabelRight = SKSpriteNode(imageNamed: "firebutton")
     let gun = ShootingRifle()
     let reticule = TargetReticule()
     
