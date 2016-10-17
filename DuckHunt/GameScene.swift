@@ -51,8 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
-    let fireLabelLeft = SKSpriteNode(imageNamed: "firebutton")
-    let fireLabelRight = SKSpriteNode(imageNamed: "firebutton")
+    var fireLabelLeft = SKSpriteNode(imageNamed: "firebutton")
+    var fireLabelRight = SKSpriteNode(imageNamed: "firebutton")
     let gun = ShootingRifle()
     let reticule = TargetReticule()
     
@@ -223,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 }
                 
-                // chech top/bottom
+                // check top/bottom
                 if s.position.y <= self.playableRect.minY + halfHeight || s.position.y >= self.playableRect.maxY - halfHeight {
                     s.reflectY(screenHeight: self.playableRect.maxY )
                     s.update(dt: dt)
@@ -243,6 +243,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createBullet(){
         if currentAmmo > 0 {
+            fireLabelLeft.texture = SKTexture(imageNamed: "firebutton")
+            fireLabelRight.texture = SKTexture(imageNamed: "firebutton")
             // manage ammo
             ammunition[currentAmmo].deplete()
             currentAmmo -= 1
@@ -286,6 +288,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             bullet.run(sequence)
         } else {
+            fireLabelLeft.texture = SKTexture(imageNamed: "reloadbutton")
+            fireLabelRight.texture = SKTexture(imageNamed: "reloadbutton")
             ammunition[0].deplete()
             reloadAmmo()
         }
@@ -293,8 +297,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func createParticles(position: CGPoint){
+        let spark = SKEmitterNode(fileNamed: "explode")!
+        spark.position = position
+        spark.zPosition = 3
+        self.addChild(spark)
+
+        let wait = SKAction.wait(forDuration: 0.3)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([wait, remove])
+        spark.run(sequence)        
+    }
+    
     func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
         bullet.removeFromParent()
+        createParticles(position: target.position)
         target.removeFromParent()
         enemiesRemaining -= 1
         levelScore += 5

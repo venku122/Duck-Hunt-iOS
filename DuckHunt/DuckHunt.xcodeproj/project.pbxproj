@@ -10,6 +10,8 @@
 		3F0CA60D1DB572D00049E8C5 /* gunshot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA60C1DB572D00049E8C5 /* gunshot.wav */; };
 		3F0CA60F1DB576510049E8C5 /* carnivalMusic.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA60E1DB576510049E8C5 /* carnivalMusic.aiff */; };
 		3F0CA6111DB577D80049E8C5 /* EmptyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */; };
+		3F6583761DB5887E00E283FB /* explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583741DB5887E00E283FB /* explode.sks */; };
+		3F6583771DB5887E00E283FB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583751DB5887E00E283FB /* spark.png */; };
 		3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9220B11D99C93A0062F04D /* BulletSprite.swift */; };
 		3FC4AEC61D98502600163191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEC51D98502600163191 /* AppDelegate.swift */; };
 		3FC4AEC81D98502700163191 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3FC4AEC71D98502700163191 /* GameScene.sks */; };
@@ -36,6 +38,8 @@
 		3F0CA60C1DB572D00049E8C5 /* gunshot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunshot.wav; sourceTree = "<group>"; };
 		3F0CA60E1DB576510049E8C5 /* carnivalMusic.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = carnivalMusic.aiff; sourceTree = "<group>"; };
 		3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBullet.swift; sourceTree = "<group>"; };
+		3F6583741DB5887E00E283FB /* explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explode.sks; sourceTree = "<group>"; };
+		3F6583751DB5887E00E283FB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		3F9220B11D99C93A0062F04D /* BulletSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSprite.swift; sourceTree = "<group>"; };
 		3FC4AEC21D98502600163191 /* DuckHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuckHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC4AEC51D98502600163191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		3FC4AEDE1D9850E900163191 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3F6583741DB5887E00E283FB /* explode.sks */,
+				3F6583751DB5887E00E283FB /* spark.png */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -190,7 +196,7 @@
 				TargetAttributes = {
 					3FC4AEC11D98502600163191 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = JB4EH8CH58;
+						DevelopmentTeam = 5W68HNMG32;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -219,8 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FC4AED11D98502700163191 /* Main.storyboard in Resources */,
+				3F6583771DB5887E00E283FB /* spark.png in Resources */,
 				3FC4AEC81D98502700163191 /* GameScene.sks in Resources */,
 				3FC4AED31D98502700163191 /* Assets.xcassets in Resources */,
+				3F6583761DB5887E00E283FB /* explode.sks in Resources */,
 				3F0CA60F1DB576510049E8C5 /* carnivalMusic.aiff in Resources */,
 				3F0CA60D1DB572D00049E8C5 /* gunshot.wav in Resources */,
 				3FC4AED61D98502700163191 /* LaunchScreen.storyboard in Resources */,
@@ -373,10 +381,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JB4EH8CH58;
+				DEVELOPMENT_TEAM = 5W68HNMG32;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -386,10 +394,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JB4EH8CH58;
+				DEVELOPMENT_TEAM = 5W68HNMG32;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
