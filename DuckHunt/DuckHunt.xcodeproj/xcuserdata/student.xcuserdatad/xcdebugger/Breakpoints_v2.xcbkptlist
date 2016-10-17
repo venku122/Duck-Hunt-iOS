@@ -217,6 +217,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "GameScene.swift"
             timestampString = "498437308.68567"
             startingColumnNumber = "9223372036854775807"
@@ -224,6 +225,15 @@
             startingLineNumber = "306"
             endingLineNumber = "306"
             landmarkName = "createParticles(position:)"
+=======
+            filePath = "GameViewController.swift"
+            timestampString = "498436096.166555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "loadGameScene(levelNum:totalScore:)"
+>>>>>>> a5423074371361b9cae426307ac599d0e496c68b
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,12 +244,69 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameScene.swift"
+<<<<<<< HEAD
             timestampString = "498437309.558389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "307"
             endingLineNumber = "307"
             landmarkName = "createParticles(position:)"
+=======
+            timestampString = "498436634.812195"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "init(size:scaleMode:levelNum:totalScore:levelTime:numEnemies:startingAmmo:sceneManager:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameScene.swift"
+            timestampString = "498436637.923493"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "init(size:scaleMode:levelNum:totalScore:levelTime:numEnemies:startingAmmo:sceneManager:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HomeScene.swift"
+            timestampString = "498436763.846158"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "touchesBegan(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HomeScene.swift"
+            timestampString = "498436766.101807"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "touchesBegan(_:with:)"
+>>>>>>> a5423074371361b9cae426307ac599d0e496c68b
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

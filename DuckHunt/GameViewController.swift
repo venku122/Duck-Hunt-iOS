@@ -54,7 +54,7 @@ class GameViewController: UIViewController {
     }
     
     func loadGameScene (levelNum:Int, totalScore:Int) {
-        gameScene = GameScene(size:screenSize, scaleMode: scaleMode, levelNum: levelNum, totalScore: totalScore, levelTime: 45, numEnemies: 10, startingAmmo: 5, sceneManager: self)
+        gameScene = GameScene(size:screenSize, scaleMode: scaleMode, levelNum: levelNum, totalScore: totalScore, levelTime: CGFloat((levelNum * Int(3/2)) + 20), numEnemies: 4 * levelNum, startingAmmo: 5 + (levelNum / 3), sceneManager: self)
     
     // let reveal = SKTransition.flipHorizontal
     let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
