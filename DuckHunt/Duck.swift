@@ -1,8 +1,8 @@
 //
-//  DiamondSprite.swift
-//  Shooter-1
+//  Ducksprite.swift
+//  DuckHunt
 //
-//  Created by student on 9/21/16.
+//  Created by Talledega Knights on 9/21/16.
 //  Copyright © 2016 student. All rights reserved.
 //
 
@@ -45,7 +45,10 @@ class Duck:SKSpriteNode {
     // MARK -Methods-
     func update(dt:CGFloat) {
         velocity = fwd * delta
-         position = position + velocity * dt
+        velocity.y = sin(position.x / 100) * 150
+        position = position + velocity * dt
+        
+        
     }
     
     func reflectX(screenWidth:CGFloat) {
