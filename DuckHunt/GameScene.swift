@@ -1,8 +1,8 @@
 //
 //  GameScene.swift
-//  Shooter-1
+//  Duck-Hunt
 //
-//  Created by student on 9/20/16.
+//  Created by Talledega Knights on 9/20/16.
 //  Copyright © 2016 student. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ struct PhysicsCategory {
     static let Projectile: UInt32 = 0b10      // 2
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate {
     
     var levelNum:Int {
         didSet {
@@ -101,6 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         setupUI()
         makeSprites(howMany: enemiesRemaining)
+        SKTGameController.sharedInstance.delegate = self
         unpauseSprites()
     }
     
@@ -397,6 +398,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.run(SKAction.sequence([waitAction, reloadAction]))
     }
+    
+    // MARK: - SKTGameControllerDelegate
+    // call by "A" button
+    func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
+        
+        print("\(event): velocity =\(velocity), pushedOn=\(pushedOn)")
+        if pushedOn == false {
+            // fire projectile on button up
+            print("button released")
+            createBullet()
+        }
+    }
+    
+    func stickEvent(event: String, point: CGPoint) {
+        let reticuleRate:CGFloat = 20
+        // print("\(event): point=\(point)")
+        
+        reticule.position.x += (point.x * reticuleRate)
+        reticule.position.y += (point.y * reticuleRate)
+ 
+        /*
+        if point.x > 0 {
+            reticule.position.x += reticuleRate
+        } else {
+            reticule.position.x += (-reticuleRate)
+        }
+        */
+    }
+    
+    // MARK: -
     
         
 }

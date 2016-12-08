@@ -34,6 +34,7 @@
 		3FC4AEF71D9852AC00163191 /* Duck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF61D9852AC00163191 /* Duck.swift */; };
 		3FC4AEF91D98656200163191 /* ShootingRifle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEF81D98656200163191 /* ShootingRifle.swift */; };
 		3FC4AEFB1D986AEF00163191 /* targetReticule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4AEFA1D986AEF00163191 /* targetReticule.swift */; };
+		3FFE3AE01DF8D16C00E80E44 /* SKTGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE3ADF1DF8D16C00E80E44 /* SKTGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		3FC4AEF61D9852AC00163191 /* Duck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duck.swift; sourceTree = SOURCE_ROOT; };
 		3FC4AEF81D98656200163191 /* ShootingRifle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShootingRifle.swift; sourceTree = "<group>"; };
 		3FC4AEFA1D986AEF00163191 /* targetReticule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = targetReticule.swift; sourceTree = "<group>"; };
+		3FFE3ADF1DF8D16C00E80E44 /* SKTGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTGameController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		3FC4AEDD1D9850D300163191 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				3FFE3ADF1DF8D16C00E80E44 /* SKTGameController.swift */,
 				3FC4AEE21D9851B700163191 /* CGFloat+Extensions.swift */,
 				3FC4AEE31D9851B700163191 /* CGPoint+Extensions.swift */,
 			);
@@ -202,7 +205,7 @@
 				TargetAttributes = {
 					3FC4AEC11D98502600163191 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5W68HNMG32;
+						DevelopmentTeam = JB4EH8CH58;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -265,6 +268,7 @@
 				3FC4AEF71D9852AC00163191 /* Duck.swift in Sources */,
 				3FC4AEF91D98656200163191 /* ShootingRifle.swift in Sources */,
 				3FC4AEFB1D986AEF00163191 /* targetReticule.swift in Sources */,
+				3FFE3AE01DF8D16C00E80E44 /* SKTGameController.swift in Sources */,
 				3FC4AEF21D98525900163191 /* GameData.swift in Sources */,
 				3FC4AEC61D98502600163191 /* AppDelegate.swift in Sources */,
 			);
@@ -389,10 +393,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5W68HNMG32;
+				DEVELOPMENT_TEAM = JB4EH8CH58;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mlynch.DuckHunt1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarazevits.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -403,10 +407,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5W68HNMG32;
+				DEVELOPMENT_TEAM = JB4EH8CH58;
 				INFOPLIST_FILE = DuckHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mlynch.DuckHunt1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarazevits.DuckHunt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
