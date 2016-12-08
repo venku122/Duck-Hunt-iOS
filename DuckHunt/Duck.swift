@@ -9,18 +9,30 @@
 import Foundation
 import SpriteKit
 
+
 class Duck:SKSpriteNode {
     // MARK -ivars-
     var fwd:CGPoint = CGPoint(x:0.0, y:1.0) // North/Up
     var velocity:CGPoint = CGPoint.zero // Speed with direction
     var delta:CGFloat = 300.0
     var hit:Bool = false
-    var spriteString:String = "duck_outline_target_white"
+    
+    var duckSpriteNames: [Int: String] = [0: "target1", 1: "target2", 2: "duck1", 3: "duck2", 4: "duck3"]
+    /*
+    duckSpriteNames[0] = "target1"
+    duckSpriteNames[1] = "target2"
+    duckSpriteNames[2] = "duck1"
+    duckSpriteNames[3] = "duck2"
+    duckSpriteNames[4] = "duck3"
+    */
+    var spriteString:String
     let duckTexture: SKTexture?
 
     // MARK -initalization-
     
       init() {
+          spriteString = duckSpriteNames[Int(arc4random_uniform(4) + 1)]!
+        
         duckTexture  = SKTexture(imageNamed: spriteString)
         super.init(texture: duckTexture, color: UIColor.clear, size: duckTexture!.size())
     }
