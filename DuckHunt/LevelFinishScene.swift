@@ -1,5 +1,5 @@
 import SpriteKit
-class LevelFinishScene: SKScene {
+class LevelFinishScene: SKScene, SKTGameControllerDelegate {
     // MARK: - ivars -
     let sceneManager:GameViewController
     let results:LevelResults
@@ -42,7 +42,7 @@ class LevelFinishScene: SKScene {
         addChild(label3)
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap to continue"
+        label4.text = "Tap or press A to continue"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
@@ -51,16 +51,28 @@ class LevelFinishScene: SKScene {
         background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
         background.zPosition = -10
         addChild(background)
-        
-        
-        
-        
+        SKTGameController.sharedInstance.delegate = self
     }
     
     
     // MARK: - Events -
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneManager.loadGameScene(levelNum: results.levelNum + 1, totalScore: results.totalScore)
+        
+    }
+    
+    // MARK: - SKTGameControllerDelegate
+    // call by "A" button
+    func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
+        
+        if pushedOn == false {
+            
+            print("button released")
+            sceneManager.loadGameScene(levelNum: results.levelNum + 1, totalScore: results.totalScore)
+        }
+    }
+    
+    func stickEvent(event: String, point: CGPoint) {
         
     }
 }

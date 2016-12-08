@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-class HomeScene: SKScene {
+class HomeScene: SKScene, SKTGameControllerDelegate {
     // MARK: -ivars-
     let sceneManager:GameViewController
     let button:SKLabelNode = SKLabelNode(fontNamed: GameData.font.mainFont)
@@ -45,7 +45,7 @@ class HomeScene: SKScene {
         // label3 was an image
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap to Start"
+        label4.text = "Tap or press A to Start"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
@@ -54,9 +54,28 @@ class HomeScene: SKScene {
         background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
         background.zPosition = -10
         addChild(background)
+        SKTGameController.sharedInstance.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
     }
+    
+    // MARK: - SKTGameControllerDelegate
+    // call by "A" button
+    func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
+        
+        if pushedOn == false {
+            
+            print("button released")
+            sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
+        }
+    }
+    
+    func stickEvent(event: String, point: CGPoint) {
+        
+    }
+   
+    
+    
 }
