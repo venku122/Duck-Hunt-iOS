@@ -1,5 +1,5 @@
 import SpriteKit
-class GameOverScene: SKScene, SKTGameControllerDelegate {
+class EndlessFinish: SKScene {
     // MARK: - ivars -
     let sceneManager:GameViewController
     let results:LevelResults
@@ -58,21 +58,6 @@ class GameOverScene: SKScene, SKTGameControllerDelegate {
     // MARK: - Events -
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneManager.loadHomeScene()
-        
-    }
-    
-    // MARK: - SKTGameControllerDelegate
-    // call by "A" button
-    func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
-        
-        if pushedOn == false {
-            
-            print("button released")
-            sceneManager.loadHomeScene()
-        }
-    }
-    
-    func stickEvent(event: String, point: CGPoint) {
         
     }
 }

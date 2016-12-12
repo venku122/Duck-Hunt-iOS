@@ -12,6 +12,7 @@
 		3F0CA6111DB577D80049E8C5 /* EmptyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */; };
 		3F0CA6141DB595090049E8C5 /* endLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA6121DB595090049E8C5 /* endLevel.png */; };
 		3F0CA6151DB595090049E8C5 /* firstScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0CA6131DB595090049E8C5 /* firstScreen.png */; };
+		3F283E081DFF49F7003E238F /* EndlessFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F283E071DFF49F7003E238F /* EndlessFinish.swift */; };
 		3F6583761DB5887E00E283FB /* explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583741DB5887E00E283FB /* explode.sks */; };
 		3F6583771DB5887E00E283FB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F6583751DB5887E00E283FB /* spark.png */; };
 		3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9220B11D99C93A0062F04D /* BulletSprite.swift */; };
@@ -46,6 +47,7 @@
 		3F0CA6101DB577D80049E8C5 /* EmptyBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBullet.swift; sourceTree = "<group>"; };
 		3F0CA6121DB595090049E8C5 /* endLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endLevel.png; sourceTree = "<group>"; };
 		3F0CA6131DB595090049E8C5 /* firstScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstScreen.png; sourceTree = "<group>"; };
+		3F283E071DFF49F7003E238F /* EndlessFinish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessFinish.swift; sourceTree = "<group>"; };
 		3F6583741DB5887E00E283FB /* explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explode.sks; sourceTree = "<group>"; };
 		3F6583751DB5887E00E283FB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		3F9220B11D99C93A0062F04D /* BulletSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSprite.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3FA0DD691DFF2C4900C97ECE /* EndlessGameScene.swift */,
 				3FC4AEE81D9851DE00163191 /* HomeScene.swift */,
 				3FC4AEE91D9851DE00163191 /* LevelFinishScene.swift */,
+				3F283E071DFF49F7003E238F /* EndlessFinish.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				3FC4AEED1D9851DE00163191 /* LevelFinishScene.swift in Sources */,
 				3FC4AEE41D9851B700163191 /* CGFloat+Extensions.swift in Sources */,
 				3FC4AEEA1D9851DE00163191 /* GameOverScene.swift in Sources */,
+				3F283E081DFF49F7003E238F /* EndlessFinish.swift in Sources */,
 				3FC4AEEB1D9851DE00163191 /* GameScene.swift in Sources */,
 				3F9220B21D99C93A0062F04D /* BulletSprite.swift in Sources */,
 				3FC4AEF71D9852AC00163191 /* Duck.swift in Sources */,

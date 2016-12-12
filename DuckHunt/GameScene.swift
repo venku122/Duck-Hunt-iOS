@@ -372,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         }
 
         if (firstBody == nil || secondBody == nil) { return }
-        
+
         if ((firstBody.categoryBitMask & PhysicsCategory.Target != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
             collisionHappened(bullet: firstBody.node!, target: secondBody.node!)
