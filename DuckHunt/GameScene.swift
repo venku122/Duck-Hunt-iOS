@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         }
     }
     
-  
+    
     let sceneManager:GameViewController
     var playableRect = CGRect.zero
     var totalSprites = 0
@@ -53,6 +53,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
     }
     
     let background = SKSpriteNode(imageNamed: "background")
+    let grass = SKSpriteNode(imageNamed: "grass")
+    let waves = SKSpriteNode(imageNamed: "waves")
+    let trees = SKSpriteNode(imageNamed: "trees")
+    let foreground = SKSpriteNode(imageNamed: "foreground")
+    
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
     let otherLabel = SKLabelNode(fontNamed: "Futura")
@@ -99,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        }
+    }
     
     
     
@@ -116,73 +121,85 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
     
     private func setupUI(){
         
-            playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            let fontSize = GameData.hud.fontSize
-            let fontColor = GameData.hud.fontColorWhite
-            let marginH = GameData.hud.marginH
-            let marginV = GameData.hud.marginV
-            
-            backgroundColor = GameData.hud.backgroundColor
+        playableRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let fontSize = GameData.hud.fontSize
+        let fontColor = GameData.hud.fontColorWhite
+        let marginH = GameData.hud.marginH
+        let marginV = GameData.hud.marginV
+        
+        backgroundColor = GameData.hud.backgroundColor
         
         // MARK: -level label -
-            timeLabel.fontColor = fontColor
-            timeLabel.fontSize = fontSize
-            timeLabel.position = CGPoint(x: marginH + 80,y: playableRect.maxY - (marginV + 75))
-            timeLabel.verticalAlignmentMode = .top
-            timeLabel.horizontalAlignmentMode = .left
-            timeLabel.text = "Time Remaining: \(Int(timeRemaining))"
-            addChild(timeLabel)
-            
-            scoreLabel.fontColor = fontColor
-            scoreLabel.fontSize = fontSize
-            scoreLabel.verticalAlignmentMode = .top
-            scoreLabel.horizontalAlignmentMode = .left
-            scoreLabel.text = "Score: 000"
-            let scoreLabelWidth = scoreLabel.frame.size.width
-            // here is the starting text of scoreLabel
-            scoreLabel.text = "Score: \(levelScore)"
-            scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH - 70,y: playableRect.maxY - marginV - 75)
-            addChild(scoreLabel)
-            
-            otherLabel.fontColor = fontColor
-            otherLabel.fontSize = fontSize
-            otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
-            otherLabel.verticalAlignmentMode = .bottom
-            otherLabel.horizontalAlignmentMode = .left
-            otherLabel.text = "Targets Remaining: \(enemiesRemaining)"
-            addChild(otherLabel)
+        timeLabel.fontColor = fontColor
+        timeLabel.fontSize = fontSize
+        timeLabel.position = CGPoint(x: marginH + 80,y: playableRect.maxY - (marginV + 75))
+        timeLabel.verticalAlignmentMode = .top
+        timeLabel.horizontalAlignmentMode = .left
+        timeLabel.text = "Time Remaining: \(Int(timeRemaining))"
+        timeLabel.zPosition = 10
+        addChild(timeLabel)
         
-            // MARK -Set up Fire buttons-
-            fireLabelLeft.position = CGPoint(x: fireLabelLeft.size.width / 2, y: fireLabelLeft.size.height  )
-            fireLabelLeft.name = "fireButton"
-            fireLabelRight.position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2), y: fireLabelLeft.size.height)
-            fireLabelRight.name = "fireButton"
-            addChild(fireLabelLeft)
-            addChild(fireLabelRight)
+        scoreLabel.fontColor = fontColor
+        scoreLabel.fontSize = fontSize
+        scoreLabel.verticalAlignmentMode = .top
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.text = "Score: 000"
+        let scoreLabelWidth = scoreLabel.frame.size.width
+        // here is the starting text of scoreLabel
+        scoreLabel.text = "Score: \(levelScore)"
+        scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH - 70,y: playableRect.maxY - marginV - 75)
+        scoreLabel.zPosition = 10
+        addChild(scoreLabel)
         
-            gun.position = CGPoint(x: playableRect.maxX / 2, y:  marginV)
-            addChild(gun)
+        otherLabel.fontColor = fontColor
+        otherLabel.fontSize = fontSize
+        otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
+        otherLabel.verticalAlignmentMode = .bottom
+        otherLabel.horizontalAlignmentMode = .left
+        otherLabel.text = "Targets Remaining: \(enemiesRemaining)"
+        otherLabel.zPosition = 10
+        addChild(otherLabel)
         
-            reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
-            addChild(reticule)
+        // MARK -Set up Fire buttons-
+        fireLabelLeft.position = CGPoint(x: fireLabelLeft.size.width / 2, y: fireLabelLeft.size.height  )
+        fireLabelLeft.name = "fireButton"
+        fireLabelRight.position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2), y: fireLabelLeft.size.height)
+        fireLabelRight.name = "fireButton"
+        fireLabelRight.zPosition = 10
+        fireLabelLeft.zPosition = 10
+        addChild(fireLabelLeft)
+        addChild(fireLabelRight)
         
-            //background graphics
-            background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
-            background.zPosition = -10
-            addChild(background)
+        gun.position = CGPoint(x: playableRect.maxX / 2, y:  marginV)
+        addChild(gun)
         
-            //music
-            backgroundMusic.autoplayLooped = true
-            addChild(backgroundMusic)
+        reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
+        addChild(reticule)
         
-            //Ammo
+        //SCENE GRAPHICS
+        // background
+        background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
+        background.zPosition = -10
+        addChild(background)
+        
+        // foreground
+        foreground.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
+        foreground.zPosition = 10
+        addChild(foreground)
+        
+        
+        //music
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
+        
+        //Ammo
         for index in 1...maxAmmo {
             ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2)  - CGFloat(100 + (index * 70)) - 70, y: fireLabelLeft.size.height  )
             addChild(ammunition[index])
         }
         
-        }
-
+    }
+    
     func makeSprites(howMany:Int) {
         totalSprites = totalSprites + howMany
         otherLabel.text = "Targets Remaining:\(totalSprites)"
@@ -308,11 +325,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         spark.position = position
         spark.zPosition = 3
         self.addChild(spark)
-
+        
         let wait = SKAction.wait(forDuration: 0.3)
         let remove = SKAction.removeFromParent()
         let sequence = SKAction.sequence([wait, remove])
-        spark.run(sequence)        
+        spark.run(sequence)
     }
     
     func collisionHappened(bullet:SKNode, target:SKNode){
@@ -342,12 +359,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         }
         // createBullet(pos: location)
         
-         /*else {
-
-            self.totalScore += self.levelScore
-            let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
-            sceneManager.loadGameOverScene(results: results)
-        }*/
+        /*else {
+         
+         self.totalScore += self.levelScore
+         let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You finished level \(levelNum)")
+         sceneManager.loadGameOverScene(results: results)
+         }*/
         
     }
     
@@ -370,7 +387,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-
+        
         if (firstBody == nil || secondBody == nil) { return }
         
         if ((firstBody.categoryBitMask & PhysicsCategory.Target != 0) &&
@@ -392,11 +409,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         }
         
         if timeRemaining <= 0   {
-         
-         self.totalScore += self.levelScore
-         let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You lost at level \(levelNum)")
-         sceneManager.loadGameOverScene(results: results)
-         }
+            
+            self.totalScore += self.levelScore
+            let results = LevelResults(levelNum: levelNum, levelScore: levelScore, totalScore: totalScore, msg: "You lost at level \(levelNum)")
+            sceneManager.loadGameOverScene(results: results)
+        }
     }
     
     func reloadAmmo() {
@@ -424,14 +441,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         
         reticule.position.x += (point.x * reticuleRate)
         reticule.position.y += (point.y * reticuleRate)
- 
+        
         /*
-        if point.x > 0 {
-            reticule.position.x += reticuleRate
-        } else {
-            reticule.position.x += (-reticuleRate)
-        }
-        */
+         if point.x > 0 {
+         reticule.position.x += reticuleRate
+         } else {
+         reticule.position.x += (-reticuleRate)
+         }
+         */
     }
     
     // MARK: -
@@ -491,5 +508,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         print("pause was toggled")
     }
     
-        
+    
 }
