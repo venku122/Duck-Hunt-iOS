@@ -1,5 +1,5 @@
 import SpriteKit
-class EndlessFinish: SKScene {
+class EndlessFinish: SKScene, SKTGameControllerDelegate {
     // MARK: - ivars -
     let sceneManager:GameViewController
     let results:LevelResults
@@ -51,7 +51,7 @@ class EndlessFinish: SKScene {
         background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
         background.zPosition = -10
         addChild(background)
-        
+        SKTGameController.sharedInstance.delegate = self
     }
     
     

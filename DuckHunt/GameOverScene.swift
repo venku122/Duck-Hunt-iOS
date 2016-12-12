@@ -42,7 +42,7 @@ class GameOverScene: SKScene, SKTGameControllerDelegate {
         addChild(label3)
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap to play again"
+        label4.text = "Tap or press A to return Home!"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
@@ -51,7 +51,7 @@ class GameOverScene: SKScene, SKTGameControllerDelegate {
         background.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
         background.zPosition = -10
         addChild(background)
-        
+        SKTGameController.sharedInstance.delegate = self
     }
     
     

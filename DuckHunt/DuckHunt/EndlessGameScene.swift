@@ -185,6 +185,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
             s.physicsBody?.collisionBitMask = PhysicsCategory.None // may change this later
             s.name = "diamond"
             s.position = randomCGPointInRectNoX(playableRect, margin: 300)
+            s.delta += CGFloat(self.levelScore)
             s.fwd = CGPoint(x: 1.0, y: 0)
             addChild(s)
         }
