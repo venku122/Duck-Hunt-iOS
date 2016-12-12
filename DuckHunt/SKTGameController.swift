@@ -115,6 +115,11 @@ class SKTGameController {
               self.delegate!.buttonEvent("buttonA", velocity: value, pushedOn: pressed)
             }
           }
+        microPad.buttonX.valueChangedHandler = { button, value, pressed in
+            if self.delegate != nil {
+                self.delegate!.buttonEvent("buttonX", velocity: value, pushedOn: pressed)
+            }
+        }
         
           //2
           microPad.allowsRotation = true
@@ -162,6 +167,11 @@ class SKTGameController {
             self.delegate!.buttonEvent(event: "buttonA", velocity: value, pushedOn: pressed)
           }
         }
+        pad.buttonX.valueChangedHandler = { button, value, pressed in
+            if self.delegate != nil {
+                self.delegate!.buttonEvent(event: "buttonX", velocity: value, pushedOn: pressed)
+            }
+        }
         pad.dpad.up.valueChangedHandler = { button, value, pressed in
           if self.delegate != nil {
             self.delegate!.buttonEvent(event: "dpad_up", velocity: value, pushedOn: pressed)
@@ -192,6 +202,11 @@ class SKTGameController {
           self.delegate!.buttonEvent(event: "buttonA", velocity: value, pushedOn: pressed)
         }
       }
+        extendedPad.buttonX.valueChangedHandler = { button, value, pressed in
+            if self.delegate != nil {
+                self.delegate!.buttonEvent(event: "buttonX", velocity: value, pushedOn: pressed)
+            }
+        }
       //2
       extendedPad.leftThumbstick.valueChangedHandler = { dpad, xValue, yValue in
         if self.delegate != nil {

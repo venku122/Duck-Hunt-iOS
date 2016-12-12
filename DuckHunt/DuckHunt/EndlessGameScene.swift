@@ -23,7 +23,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
         }
     }
     var highScore:Int
-
+    var destroyedSprites:Int = 0
     var gameLoopPaused:Bool = true{
         didSet{
             print("gameLoopPaused=\(gameLoopPaused)")
@@ -216,8 +216,8 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
                     }
                     self.lives -= 1
                     if(self.lives <= 0 ) {
-                        let results = LevelResults(levelNum: 0, levelScore: levelScore, highScore: highScore, msg: "You survived \(levelNum) targets!")
-                        sceneManager.loadGameOverScene(results: results)
+                        let results = LevelResults(levelNum: 0, levelScore: self.levelScore, totalScore: self.highScore, msg: "You shot down \(self.destroyedSprites) targets!")
+                        self.sceneManager.loadGameOverScene(results: results)
                     }
                     s.removeFromParent()
                     // self.levelScore = self.levelScore + 1 // lame game
@@ -248,9 +248,9 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
             fireLabelLeft.texture = SKTexture(imageNamed: "firebutton")
             fireLabelRight.texture = SKTexture(imageNamed: "firebutton")
             // manage ammo
-            ammunition[currentAmmo].deplete()
-            currentAmmo -= 1
-            
+            // ammunition[currentAmmo].deplete()
+            // currentAmmo -= 1
+            levelScore -= 1
             let bullet = BulletSprite()
             let pos = reticule.position
             print("made a bullet")
@@ -316,6 +316,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
         createParticles(position: target.position)
         target.removeFromParent()
         totalSprites -= 1
+        destroyedSprites += 1
         levelScore += 5
         if(totalSprites <= 3) {
             makeSprites(howMany: 4)

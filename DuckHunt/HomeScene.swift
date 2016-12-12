@@ -45,7 +45,7 @@ class HomeScene: SKScene, SKTGameControllerDelegate {
         // label3 was an image
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap or press A to Start"
+        label4.text = "Press A for Regular or X for Endless Mode"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
@@ -75,10 +75,16 @@ class HomeScene: SKScene, SKTGameControllerDelegate {
     func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
         
         if pushedOn == false {
+            if(event == "buttonA"){
+                sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
+            }
             
+            if(event == "buttonX") {
+                sceneManager.loadEndlessGameScene(highScore: 0)
+            }
             print("button released")
-            // sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
-            sceneManager.loadEndlessGameScene(highScore: 0)
+            //
+            
         }
     }
     
