@@ -315,7 +315,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         spark.run(sequence)        
     }
     
-    func collisionHappened(bullet:SKSpriteNode, target:SKSpriteNode){
+    func collisionHappened(bullet:SKNode, target:SKNode){
         bullet.removeFromParent()
         createParticles(position: target.position)
         target.removeFromParent()
@@ -371,9 +371,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
             secondBody = contact.bodyA
         }
 
+        if (firstBody == nil || secondBody == nil) { return }
+        
         if ((firstBody.categoryBitMask & PhysicsCategory.Target != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
-            collisionHappened(bullet: firstBody.node as! SKSpriteNode, target: secondBody.node as! SKSpriteNode)
+            collisionHappened(bullet: firstBody.node!, target: secondBody.node!)
         }
     }
     
