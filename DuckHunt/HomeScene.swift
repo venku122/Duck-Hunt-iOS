@@ -55,6 +55,15 @@ class HomeScene: SKScene, SKTGameControllerDelegate {
         background.zPosition = -10
         addChild(background)
         SKTGameController.sharedInstance.delegate = self
+        
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

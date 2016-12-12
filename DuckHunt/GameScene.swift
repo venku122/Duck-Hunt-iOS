@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate {
         // MARK: -level label -
             timeLabel.fontColor = fontColor
             timeLabel.fontSize = fontSize
-            timeLabel.position = CGPoint(x: marginH,y: playableRect.maxY - marginV)
+            timeLabel.position = CGPoint(x: marginH + 80,y: playableRect.maxY - (marginV + 75))
             timeLabel.verticalAlignmentMode = .top
             timeLabel.horizontalAlignmentMode = .left
             timeLabel.text = "Time Remaining: \(Int(timeRemaining))"
@@ -136,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate {
             let scoreLabelWidth = scoreLabel.frame.size.width
             // here is the starting text of scoreLabel
             scoreLabel.text = "Score: \(levelScore)"
-            scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH,y: playableRect.maxY - marginV)
+            scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH - 70,y: playableRect.maxY - marginV - 75)
             addChild(scoreLabel)
             
             otherLabel.fontColor = fontColor
@@ -172,7 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate {
         
             //Ammo
         for index in 1...maxAmmo {
-            ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2)  - CGFloat(100 + (index * 70)), y: fireLabelLeft.size.height  )
+            ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2)  - CGFloat(100 + (index * 70)) - 70, y: fireLabelLeft.size.height  )
             addChild(ammunition[index])
         }
         

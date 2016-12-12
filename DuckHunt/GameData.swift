@@ -14,7 +14,7 @@ struct GameData{
     }
     static let maxLevel = 3
     struct font{
-        static let mainFont = "Avenir-Black "
+        static let mainFont = "RoadRage"
     }
     
     struct hud{
