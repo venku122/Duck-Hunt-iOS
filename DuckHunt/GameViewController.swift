@@ -13,6 +13,7 @@ import GameplayKit
 class GameViewController: UIViewController {
     // MARK -ivars-
     var gameScene: GameScene?
+    var endlessScene: EndlessGameScene?
     var skView:SKView!
     let showDebugData = true
     let screenSize = CGSize(width: 2048, height: 1536)
@@ -55,10 +56,20 @@ class GameViewController: UIViewController {
     
     func loadGameScene (levelNum:Int, totalScore:Int) {
         gameScene = GameScene(size:screenSize, scaleMode: scaleMode, levelNum: levelNum, totalScore: totalScore, levelTime: CGFloat((levelNum * Int(3/2)) + 20), numEnemies: 4 * levelNum, startingAmmo: 5 + (levelNum / 3), sceneManager: self)
+
     
     // let reveal = SKTransition.flipHorizontal
     let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
     skView.presentScene(gameScene!, transition: reveal)
+    }
+    
+    
+    func loadEndlessGameScene(highScore:Int) {
+        endlessScene = EndlessGameScene(size:screenSize, scaleMode: scaleMode, highScore: highScore, sceneManager: self)
+        
+        // let reveal = SKTransition.flipHorizontal
+        let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
+        skView.presentScene(endlessScene!, transition: reveal)
     }
 
     override var shouldAutorotate: Bool {

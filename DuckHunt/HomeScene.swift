@@ -77,7 +77,8 @@ class HomeScene: SKScene, SKTGameControllerDelegate {
         if pushedOn == false {
             
             print("button released")
-            sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
+            // sceneManager.loadGameScene(levelNum: 1, totalScore: 0)
+            sceneManager.loadEndlessGameScene(highScore: 0)
         }
     }
     
