@@ -36,7 +36,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
     var playableRect = CGRect.zero
     var totalSprites = 0
     var minEnemies = 3
-    
+    var lives = 10
     let background = SKSpriteNode(imageNamed: "background")
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
@@ -87,7 +87,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
     
     override func didMove(to view: SKView) {
         setupUI()
-        makeSprites(howMany: minEnemies + 10)
+        makeSprites(howMany: minEnemies + 4)
         SKTGameController.sharedInstance.delegate = self
         unpauseSprites()
     }
@@ -133,7 +133,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
         otherLabel.position = CGPoint(x: marginH, y: playableRect.minY + marginV)
         otherLabel.verticalAlignmentMode = .bottom
         otherLabel.horizontalAlignmentMode = .left
-        otherLabel.text = "Targets Remaining: \(minEnemies)"
+        otherLabel.text = "Lives Remaining: \(lives)"
         addChild(otherLabel)
         
         // MARK -Set up Fire buttons-
@@ -170,7 +170,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
     func makeSprites(howMany:Int) {
         totalSprites = totalSprites + howMany
         //otherLabel.text = "Targets Remaining:\(totalSprites)"
-        otherLabel.text = "Lives Remaining"
+        otherLabel.text = "Lives Remaining: \(lives)"
         var s:Duck
         for _ in 0...howMany-1 {
             s = Duck()
@@ -180,7 +180,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
             s.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
             s.physicsBody?.collisionBitMask = PhysicsCategory.None // may change this later
             s.name = "diamond"
-            s.position = randomCGPointInRect(playableRect, margin: 300)
+            s.position = randomCGPointInRectNoX(playableRect, margin: 300)
             s.fwd = CGPoint(x: 1.0, y: 0)
             addChild(s)
         }
@@ -205,13 +205,25 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
                 
                 s.update(dt:dt)
                 
+                
                 // check left/right
-                if s.position.x <= halfWidth || s.position.x >= self.size.width - halfWidth {
+                if s.position.x >= self.size.width  { // - halfWidth
                     s.reflectX(screenWidth: self.size.width ) //bouncing
                     s.update(dt:dt) //extra move
+                    self.totalSprites -= 1
+                    if(self.totalSprites <= 3) {
+                        self.makeSprites(howMany: 4)
+                    }
+                    self.lives -= 1
+                    if(self.lives <= 0 ) {
+                        let results = LevelResults(levelNum: 0, levelScore: levelScore, highScore: highScore, msg: "You survived \(levelNum) targets!")
+                        sceneManager.loadGameOverScene(results: results)
+                    }
+                    s.removeFromParent()
                     // self.levelScore = self.levelScore + 1 // lame game
                     
                 }
+                
                 
                 // check top/bottom
                 if s.position.y <= self.playableRect.minY + halfHeight || s.position.y >= self.playableRect.maxY - halfHeight {
@@ -306,7 +318,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
         totalSprites -= 1
         levelScore += 5
         if(totalSprites <= 3) {
-            makeSprites(howMany: 10)
+            makeSprites(howMany: 4)
         }
     }
     

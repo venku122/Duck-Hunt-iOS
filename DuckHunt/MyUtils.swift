@@ -75,6 +75,12 @@ func randomCGPointInRect(_ rect:CGRect,margin:CGFloat)->CGPoint{
     return CGPoint(x:x,y:y)
 }
 
+func randomCGPointInRectNoX(_ rect:CGRect,margin:CGFloat)->CGPoint{
+    let x = CGFloat.random(min: -(rect.minX + margin), max: 0)
+    let y = CGFloat.random(min: rect.minY + margin, max: rect.maxY - margin)
+    return CGPoint(x:x,y:y)
+}
+
 extension CGPoint{
     public static func randomUnitVector()->CGPoint{
         let vector = CGPoint(x:CGFloat.random(min:-1.0,max:1.0),y:CGFloat.random(min:-1.0,max:1.0))
