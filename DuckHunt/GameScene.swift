@@ -171,9 +171,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         addChild(fireLabelRight)
         
         gun.position = CGPoint(x: playableRect.maxX / 2, y:  marginV)
+        gun.zPosition = 10
         addChild(gun)
         
         reticule.position = CGPoint(x: playableRect.maxX  / 2, y: playableRect.maxY / 2)
+        reticule.zPosition = 11
         addChild(reticule)
         
         //SCENE GRAPHICS
@@ -184,8 +186,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         
         // foreground
         foreground.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2)
-        foreground.zPosition = 10
+        foreground.zPosition = 9
         addChild(foreground)
+        
+        // waves
+        waves.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 3)
+        waves.zPosition = 7
+        addChild(waves)
+        
+        // grass
+        grass.position = CGPoint(x: playableRect.maxX / 2, y: playableRect.maxY / 2.2)
+        grass.zPosition = 5
+        addChild(grass)
         
         
         //music
@@ -195,6 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
         //Ammo
         for index in 1...maxAmmo {
             ammunition[index].position = CGPoint(x: playableRect.maxX - (fireLabelRight.size.width / 2)  - CGFloat(100 + (index * 70)) - 70, y: fireLabelLeft.size.height  )
+            ammunition[index].zPosition = 10
             addChild(ammunition[index])
         }
         
@@ -212,8 +225,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
             s.physicsBody?.categoryBitMask = PhysicsCategory.Target
             s.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
             s.physicsBody?.collisionBitMask = PhysicsCategory.None // may change this later
-            s.name = "diamond"
-            s.position = randomCGPointInRect(playableRect, margin: 300)
+            s.name = "duck"
+            
+            if (arc4random_uniform(2) == 0){
+                s.position = CGPoint(x: randomCGPointInRect(playableRect, margin: 300).x, y: playableRect.maxY / 2.2)
+                s.zPosition = 4
+            } else {
+                s.position = CGPoint(x: randomCGPointInRect(playableRect, margin: 300).x, y: playableRect.maxY / 3)
+                s.zPosition = 5
+            }
+            
+            //s.position = randomCGPointInRect(playableRect, margin: 300)
+            //s.zPosition = 8
             s.fwd = CGPoint(x: 1.0, y: 0)
             addChild(s)
         }
@@ -230,7 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
     
     func moveSprites(dt:CGFloat) {
         if spritesMoving {
-            enumerateChildNodes(withName: "diamond", using: {
+            enumerateChildNodes(withName: "duck", using: {
                 node, stop in
                 let s = node as! Duck
                 let halfWidth = s.frame.width/2
@@ -276,6 +299,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDelegate, U
             let pos = reticule.position
             print("made a bullet")
             bullet.position = CGPoint(x: playableRect.maxX / 2, y: GameData.hud.marginV)
+            bullet.zPosition = 10
             
             //physics stuff
             bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.bulletTexture!.size().width/2)
