@@ -1,5 +1,5 @@
 import SpriteKit
-class GameOverScene: SKScene, SKTGameControllerDelegate {
+class EndlessFinish: SKScene, SKTGameControllerDelegate {
     // MARK: - ivars -
     let sceneManager:GameViewController
     let results:LevelResults
@@ -42,7 +42,7 @@ class GameOverScene: SKScene, SKTGameControllerDelegate {
         addChild(label3)
         
         let label4 = SKLabelNode(fontNamed: GameData.font.mainFont)
-        label4.text = "Tap or press A to return Home!"
+        label4.text = "Tap to play again"
         label4.fontColor = UIColor.red
         label4.fontSize = 70
         label4.position = CGPoint(x:size.width/2, y:size.height/2 - 400)
@@ -58,21 +58,6 @@ class GameOverScene: SKScene, SKTGameControllerDelegate {
     // MARK: - Events -
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneManager.loadHomeScene()
-        
-    }
-    
-    // MARK: - SKTGameControllerDelegate
-    // call by "A" button
-    func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
-        
-        if pushedOn == false {
-            
-            print("button released")
-            sceneManager.loadHomeScene()
-        }
-    }
-    
-    func stickEvent(event: String, point: CGPoint) {
         
     }
 }

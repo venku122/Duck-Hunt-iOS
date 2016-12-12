@@ -138,6 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameScene.swift"
+<<<<<<< HEAD
             timestampString = "503273466.711203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -145,6 +146,15 @@
             endingLineNumber = "417"
             landmarkName = "reloadAmmo()"
             landmarkType = "7">
+=======
+            timestampString = "503270701.801091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+>>>>>>> 39e245318f4fc20b690a4b9b51b18867605c0336
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,12 +196,21 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameScene.swift"
+<<<<<<< HEAD
             timestampString = "503273466.711203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "423"
             endingLineNumber = "423"
             landmarkName = "buttonEvent(event:velocity:pushedOn:)"
+=======
+            timestampString = "503270701.801091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "reloadAmmo()"
+>>>>>>> 39e245318f4fc20b690a4b9b51b18867605c0336
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,11 +221,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DuckHunt/EndlessGameScene.swift"
-            timestampString = "503268182.963848"
+            timestampString = "503271665.406984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "moveSprites(dt:)"
             landmarkType = "7">
          </BreakpointContent>

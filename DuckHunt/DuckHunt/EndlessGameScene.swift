@@ -36,7 +36,11 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
     var playableRect = CGRect.zero
     var totalSprites = 0
     var minEnemies = 3
-    var lives = 10
+    var lives = 10 {
+        didSet {
+             otherLabel.text = "Lives Remaining: \(lives)"
+        }
+    }
     let background = SKSpriteNode(imageNamed: "background")
     let timeLabel = SKLabelNode(fontNamed: "Futura")
     let scoreLabel = SKLabelNode(fontNamed: "Futura")
@@ -181,6 +185,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
             s.physicsBody?.collisionBitMask = PhysicsCategory.None // may change this later
             s.name = "diamond"
             s.position = randomCGPointInRectNoX(playableRect, margin: 300)
+            s.delta += CGFloat(self.levelScore)
             s.fwd = CGPoint(x: 1.0, y: 0)
             addChild(s)
         }
@@ -216,7 +221,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
                     }
                     self.lives -= 1
                     if(self.lives <= 0 ) {
-                        let results = LevelResults(levelNum: 0, levelScore: self.levelScore, totalScore: self.highScore, msg: "You shot down \(self.destroyedSprites) targets!")
+                        let results = LevelResults(levelNum: 0, levelScore: self.levelScore, totalScore: self.levelScore, msg: "You shot down \(self.destroyedSprites) targets!")
                         self.sceneManager.loadGameOverScene(results: results)
                     }
                     s.removeFromParent()
@@ -371,6 +376,7 @@ class EndlessGameScene: SKScene, SKPhysicsContactDelegate, SKTGameControllerDele
             secondBody = contact.bodyA
         }
         
+        if(firstBody == nil || secondBody == nil) {return}
         if ((firstBody.categoryBitMask & PhysicsCategory.Target != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
             collisionHappened(bullet: firstBody.node as! SKSpriteNode, target: secondBody.node as! SKSpriteNode)
